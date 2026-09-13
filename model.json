@@ -1,0 +1,25 @@
+{
+  "kind": "mcp",
+  "title": "MCP",
+  "ports": {
+    "inputs": [],
+    "outputs": [
+      {
+        "id": 1,
+        "name": "mcp",
+        "title": "Out",
+        "emits": ["capability/mcp"],
+        "multiplicity": "many"
+      }
+    ]
+  },
+  "config": {
+    "mcp_ref": "mcp_server"
+  },
+  "runtime": {
+    "initial_state": "ready",
+    "active_worker": true,
+    "generic_source": true,
+    "mcp_provider": true
+  }
+}
