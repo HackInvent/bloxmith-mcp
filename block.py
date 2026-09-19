@@ -59,7 +59,7 @@ class McpBlock(BlockDefinition):
             replacements={
                 "title": node.get("title") or self.default_title(),
                 "ref": ref or "mcp_ref manquant",
-                "summary": "Capacite MCP",
+                "summary": "Obsolete · compatibilite temporaire",
             },
         )
 

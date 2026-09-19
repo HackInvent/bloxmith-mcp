@@ -1,9 +1,11 @@
 {
   "kind": "mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "bloxsmith_compatibility": ["1.0.9"],
   "tested_with_bloxsmith": "1.0.9",
-  "title": "MCP",
+  "title": "MCP (Obsolete)",
+  "deprecated": true,
+  "deprecation_message": "This block is obsolete and is retained temporarily. Direct MCP selection in the Codex block is planned.",
   "ports": {
     "inputs": [],
     "outputs": [

@@ -18,8 +18,10 @@ capability emission without starting external MCP servers.
 # - FB2 - Execute the block and verify it emits a capability/mcp output.
 # - FB3 - Render MCP inspector choices from the available registry refs.
 # - FB4 - Verify a missing MCP reference produces a clear configuration error.
+# - FB5 - Keep the obsolete status machine-readable and visible in block surfaces.
 
 from pathlib import Path
+import json
 from tempfile import TemporaryDirectory
 from types import SimpleNamespace
 
@@ -55,12 +57,16 @@ def test_mcp_modal_uses_generic_surface_contract() -> None:
     expect("block-config-modal" in html, "MCP modal must use the generic config layout.")
     expect("data-block-apply" in html, "MCP modal must keep generic Apply persistence.")
     expect("data-block-runtime-refresh" not in html, "MCP modal must not claim autonomous refresh without block JS.")
+    expect("data-mcp-deprecation-notice" in html, "MCP modal must display its obsolete status.")
     expect(assets == [], "MCP modal must not declare block JS while it has no custom interaction.")
 
 
 def main() -> None:
     test_mcp_modal_uses_generic_surface_contract()
     block = McpBlock()
+    model = json.loads((block.directory / "model.json").read_text(encoding="utf-8"))
+    expect(model.get("deprecated") is True, "MCP manifest must expose its obsolete status.")
+    expect(bool(model.get("deprecation_message")), "MCP manifest must explain its obsolete status.")
 
     resolved = block.resolve_config(
         {"mcp_ref": "docs"},
@@ -74,6 +80,7 @@ def main() -> None:
     )
     html = str(rendered.get("html") or "")
     expect("docs · Docs MCP" in html and 'value="docs" selected' in html, "MCP inspector must render and select registry refs.")
+    expect("data-mcp-deprecation-notice" in html, "MCP inspector must display its obsolete status.")
 
     with TemporaryDirectory(prefix="bloxsmith-mcp-test-") as tmp:
         result = block.execute_runtime(context(Path(tmp), resolved))

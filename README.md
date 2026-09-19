@@ -1,13 +1,15 @@
-# MCP Block
+# MCP Block (Deprecated)
 
 <!-- block-metadata:start -->
-[![Block version: 0.1.0](https://img.shields.io/badge/block-0.1.0-blue)](model.json)
+[![Block version: 0.1.1](https://img.shields.io/badge/block-0.1.1-blue)](model.json)
 [![BloxSmith compatibility: 1.0.9](https://img.shields.io/badge/BloxSmith-1.0.9-brightgreen)](compatibility.json)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
 
 Verified BloxSmith versions: **1.0.9** (bundled-block tests; see [test evidence](compatibility.json)).
 <!-- block-metadata:end -->
 
+
+> **Deprecated:** this block remains available temporarily, but should not be used in new workflows. Direct MCP selection in the Codex block is planned as its replacement.
 
 ## Role
 
