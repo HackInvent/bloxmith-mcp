@@ -58,7 +58,7 @@ class McpBlock(BlockDefinition):
             node_classes=["mcp-node"],
             replacements={
                 "title": node.get("title") or self.default_title(),
-                "ref": ref or "mcp_ref manquant",
+                "ref": ref or "missing mcp_ref",
                 "summary": "Obsolete · compatibilite temporaire",
             },
         )
@@ -108,7 +108,7 @@ class McpBlock(BlockDefinition):
 
         servers = payload.get("mcp_server_refs") if isinstance(payload.get("mcp_server_refs"), list) else []
         if not servers:
-            return '<option value="">Aucun MCP configuré</option>'
+            return '<option value="">No MCP configured</option>'
         options = []
         for server in servers:
             if not isinstance(server, dict):
@@ -119,7 +119,7 @@ class McpBlock(BlockDefinition):
             name = str(server.get("name") or ref)
             label = f"{ref} · {name}" if name and name != ref else ref
             options.append(f'<option value="{escape(ref)}"{" selected" if ref == selected_ref else ""}>{escape(label)}</option>')
-        return "\n".join(options) or '<option value="">Aucun MCP configuré</option>'
+        return "\n".join(options) or '<option value="">No MCP configured</option>'
 
     def build_runtime_config(self, *, node: Any, config: dict[str, Any], **runtime_services: Any) -> dict[str, Any]:
         """Resolve the runtime MCP configuration through the injected registry service.
@@ -153,7 +153,7 @@ class McpBlock(BlockDefinition):
             return self.config_label(resolved)
         except Exception:
             ref = self.ref_from_config(config)
-            return f"{ref or 'mcp_ref manquant'} (non configure)"
+            return f"{ref or 'missing mcp_ref'} (not configured)"
 
     def resolve_config(self, config: dict[str, Any], *, resolver: Any = None) -> dict[str, Any]:
         """Resolve a persisted MCP reference into a runtime configuration.
@@ -189,7 +189,7 @@ class McpBlock(BlockDefinition):
 
         name = str(config.get("name") or config.get("mcp_ref") or "mcp_server").strip() or "mcp_server"
         url = str(config.get("url") or "").strip()
-        return f"{name} ({url or 'url non definie'})"
+        return f"{name} ({url or 'URL not defined'})"
 
     def execute_runtime(self, context: BlockRuntimeContext) -> BlockRuntimeResult:
         """Emit the configured MCP capability reference on every output port.

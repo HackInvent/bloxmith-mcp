@@ -5,16 +5,16 @@
       <h2 id="{{ node_id }}BlockModalTitle">{{ node_title }}</h2>
     </div>
     <div class="modal-actions">
-      <button class="ghost-btn" data-close-block-modal type="button">Fermer</button>
+      <button class="ghost-btn" data-close-block-modal type="button">Close</button>
     </div>
   </div>
   <div class="block-config-modal-body">
     <section class="ports-editor-section" role="status" data-mcp-deprecation-notice>
-      <div class="ports-editor-header"><span class="group-label">Bloc obsolète</span></div>
-      <p>Ce bloc reste disponible temporairement. La sélection directe des MCP dans le bloc Codex est prévue pour le remplacer.</p>
+      <div class="ports-editor-header"><span class="group-label">Deprecated block</span></div>
+      <p>This block remains available temporarily. Direct MCP selection in the Codex block is planned as its replacement.</p>
     </section>
     <section class="ports-editor-section">
-      <div class="ports-editor-header"><span class="group-label">Identité</span></div>
+      <div class="ports-editor-header"><span class="group-label">Identity</span></div>
       {{ title_field_html }}
     </section>
     <section class="ports-editor-section">
@@ -26,7 +26,7 @@
       {{ ports_html }}
     </section>
     <section class="ports-editor-section">
-      <div class="ports-editor-header"><span class="group-label">Dernier état</span></div>
+      <div class="ports-editor-header"><span class="group-label">Last state</span></div>
       {{ runtime_html }}
     </section>
   </div>
