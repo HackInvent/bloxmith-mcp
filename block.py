@@ -177,7 +177,7 @@ class McpBlock(BlockDefinition):
             resolved["mcp_ref"] = mcp_ref
             return resolved
 
-        raise ValueError("Node MCP sans mcp_ref. Configure le bloc MCP avec une reference de registre.")
+        raise ValueError("MCP node without mcp_ref. Configure the MCP block with a registry reference.")
 
     def ref_from_config(self, config: dict[str, Any]) -> str:
         """Extract the normalized MCP reference from a config object."""
