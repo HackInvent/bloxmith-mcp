@@ -16,10 +16,13 @@ from bloxsmith_app.block_api import (
     BlockRuntimeContext,
     BlockRuntimeOutput,
     BlockRuntimeResult,
-    CAPABILITY_MCP,
     render_inspector_template,
     render_node_card_template,
 )
+
+# The framework stopped exporting this port type when MCP configuration moved to
+# the studio. The block keeps the historical value so existing graphs stay loadable.
+CAPABILITY_MCP = "capability/mcp"
 
 
 # Functional behavior:
@@ -214,7 +217,7 @@ class McpBlock(BlockDefinition):
         return BlockRuntimeResult(
             status="success",
             outputs=outputs,
-            logs=[f"[mcp] {context.node_id}: reference MCP '{name}' emise."],
+            logs=[f"[mcp] {context.node_id}: MCP reference '{name}' emitted."],
             last_message=name,
             content_type=CAPABILITY_MCP,
             worker_received=name,
